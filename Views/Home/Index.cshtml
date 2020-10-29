@@ -1,0 +1,23 @@
+﻿@using TXTextControl.Web
+@using TXTextControl.Web.MVC
+@using System.Xml;
+@using System.Xml.Serialization;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.TXTextControl().TextControl(settings =>
+{
+    settings.Dock = DockStyle.Window;
+}).LoadXMLDatabase(
+    (XmlDocument)ViewBag.xmlDataSource).Render()
+
+<script>
+    TXTextControl.addEventListener("ribbonTabsLoaded", function (e) {
+        document.getElementById("tabMailings").innerText = "Mail Merge";
+        
+        //$('#ribbonGroupDataSource').remove();
+        $('#ribbonGroupDataSource').addClass("ui-state-disabled");
+    });   
+</script>
